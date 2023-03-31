@@ -6,6 +6,7 @@
     <title>lab4</title>
 </head>
 <body>
+<form action="/index" method="get">
 <fieldset>
     <legend>LED Control Panel:</legend>
     <div>
@@ -25,22 +26,22 @@
 
     <div>
         <button id="submit LEDCP">Submit</button>
-        <input type="radio" id="ON" name="drone" value="ON">
+        <input type="radio" id="ON" name="drone_on" value="ON">
         <label for="ON">ON</label>
 
-        <input type="radio" id="OFF" name="drone" value="OFF">
+        <input type="radio" id="OFF" name="drone_off" value="OFF">
         <label for="OFF">OFF</label>
     </div>
-
 </fieldset>
 <fieldset>
     <legend>LED Switch</legend>
     <div>
-        <input id="timesOfSwitching">
+        <input id="timesOfSwitching", name="inputTimes">
     <br>
-        <button id="StartSwitching">Mode_shine</button>
+        <button id="StartSwitching", name="btnShine">Mode_shine</button>
     </div>
 
 </fieldset>
+</form>
 </body>
 </html>
