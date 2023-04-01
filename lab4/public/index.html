@@ -4,43 +4,72 @@
 <head>
     <meta charset="utf-8"/>
     <title>lab4</title>
+    <script type="text/javascript">
+        var radios = document.getElementById("drone");
+        var leds = document.getElementById("LED")
+        function displayResult(){
+            if(radios[0].checked){
+                for(var i = 0; i < leds.length; i++){
+                    if(leds[i].checked == true){
+                        document.getElementById("showLED").innerHTML = `${leds[i].name} ON <br>`
+                    }
+                }
+            }
+            else if(radios[1].checked){
+                for(var i = 0; i < leds.length; i++){
+                    if(leds[i].checked == true){
+                        document.getElementById("showLED").innerHTML = `${leds[i].name} OFF <br>`
+                    }
+                }
+            }
+        }
+        
+        function displayTimes(){
+            document.getElementById("displayTimes").innerHTML(`Mode_Shine_Times: ${document.getElementsByName("inputTimes").value}`)
+        }
+    </script>
 </head>
 <body>
+
 <form action="/index" method="get">
 <fieldset>
     <legend>LED Control Panel:</legend>
     <div>
-        <input type="checkbox" id="LED1" name="LED1">
+        <input type="checkbox" id="LED" name="LED1">
         <label for="LED1">LED1</label>
 
-        <input type="checkbox" id="LED2" name="LED2">
+        <input type="checkbox" id="LED" name="LED2">
         <label for="LED2">LED3</label>
     </div>
     <div>
-        <input type="checkbox" id="LED3" name="LED3">
+        <input type="checkbox" id="LED" name="LED3">
         <label for="LED3">LED3</label>
 
-        <input type="checkbox" id="LED4" name="LED4">
+        <input type="checkbox" id="LED" name="LED4">
         <label for="LED4">LED4</label>
     </div>
 
     <div>
-        <button id="submit LEDCP">Submit</button>
-        <input type="radio" id="ON" name="drone_on" value="ON">
+        <input type="radio" id="drone" name="drone_on" value="ON">
         <label for="ON">ON</label>
 
-        <input type="radio" id="OFF" name="drone_off" value="OFF">
+        <input type="radio" id="drone" name="drone_off" value="OFF">
         <label for="OFF">OFF</label>
+        <br>
+        <button id="submit LEDCP", onclick="displayResult">Submit</button>
     </div>
+    <p id = "showLED">
+    </p>
 </fieldset>
 <fieldset>
     <legend>LED Switch</legend>
     <div>
         <input id="timesOfSwitching", name="inputTimes">
     <br>
-        <button id="StartSwitching", name="btnShine">Mode_shine</button>
+        <button id="StartSwitching", name="btnShine", onclick="displayTimes">Mode_shine</button>
     </div>
-
+    <p id = "showTimes">
+    </p>
 </fieldset>
 </form>
 </body>
