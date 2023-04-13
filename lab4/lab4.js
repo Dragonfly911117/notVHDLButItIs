@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 
-app.use(express.static('./public'));
+app.use(express.static('/Users/sunnychan/Desktop/microprocessor/notVHDLButItIs/lab4/public'));
+// app.use(express.static('./Users/sunnychan/Desktop/microprocessor/notVHDLButItIs/lab4/public'));
 
 app.get("/index", (req, res) => {
     var response = {
@@ -72,7 +73,7 @@ async function controlLED(object) {
 
 }
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
     console.log(`Serevr is running on port ${PORT}.`);
 });
