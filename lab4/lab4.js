@@ -15,8 +15,22 @@ app.get("/index", (req, res) => {
         "my_btnShine": req.query.btnShine
     }
     controlLED(response)
-    res.send("Successfully Requested")
+    let msg = "<p> LED1" + coolFunction(response["my_LED1"], response.my_radio == 'ON')
+    msg += "<p> LED2" + coolFunction(response["my_LED2"], response.my_radio == 'ON')
+    msg += "<p> LED3" + coolFunction(response["my_LED3"], response.my_radio == 'ON')
+    msg += "<p> LED4" + coolFunction(response["my_LED4"], response.my_radio == 'ON')
+
+    res.send(msg);
 })
+
+
+function coolFunction(led, state) {
+    if (led == "on"){
+        return (state  ? " ON" : " OFF" )+ "</p>";
+    }else{
+        return (!state  ? " ON" : " OFF" )+ "</p>";
+    }
+}
 
 async function controlLED(object) {
     let child_process = require("child_process");
@@ -24,10 +38,9 @@ async function controlLED(object) {
     let process;
     let list = [];
     console.log(object["my_btnShine"]);
-    if (object["my_inputTimes"] !=""){
+    if (object["my_inputTimes"] != "") {
         list.push("Mode_Shine " + object["my_inputTimes"]);
-    }
-    else if (object["my_radio"] == 'ON') {
+    } else if (object["my_radio"] == 'ON') {
         if (object["my_LED1"] == 'on') {
             list.push("LED1 ON");
         }
@@ -73,7 +86,12 @@ async function controlLED(object) {
 
 }
 
+<<<<<<< HEAD
 const PORT = process.env.PORT || 5500;
+=======
+
+const PORT = process.env.PORT || 8080;
+>>>>>>> 7de2500 (lab4)
 app.listen(PORT, () => {
     console.log(`Serevr is running on port ${PORT}.`);
 });

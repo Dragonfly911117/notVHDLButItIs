@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>lab4</title>
+<<<<<<< HEAD
 </head>
 <body>
 
@@ -78,5 +79,70 @@
         }
  </script>
     
+=======
+    <script type="text/javascript">
+        const form = document.querySelector("form");
+        const log = document.querySelector("#log");
+
+        form.addEventListener(
+            "submit",
+            (event) => {
+                const data = new FormData(form);
+                let output = "";
+                for (const entry of data) {
+                    output = `${output}${entry[0]}=${entry[1]}\r`;
+                }
+                log.innerText = output;
+                event.preventDefault();
+            },
+            false
+        );
+    </script>
+</head>
+<body>
+
+<form action="/index" method="get">
+    <fieldset>
+        <legend>LED Control Panel:</legend>
+        <div>
+            <input type="checkbox" id="LED1" name="LED1">
+            <label for="LED1">LED1</label>
+
+            <input type="checkbox" id="LED2" name="LED2">
+            <label for="LED2">LED2</label>
+        </div>
+        <div>
+            <input type="checkbox" id="LED3" name="LED3">
+            <label for="LED3">LED3</label>
+
+            <input type="checkbox" id="LED4" name="LED4">
+            <label for="LED4">LED4</label>
+        </div>
+
+        <div>
+            <input type="radio" id="ON" name="onOff" value="ON">
+            <label for="ON">ON</label>
+
+            <input type="radio" id="OFF" name="onOff" value="OFF">
+            <label for="OFF">OFF</label>
+            <br>
+            <button name="submit_LEDCP" id="submit_LEDCP" , onclick="displayResult">Submit</button>
+        </div>
+        <p id="showLED">
+        </p>
+    </fieldset>
+    <fieldset>
+        <legend>LED Switch</legend>
+        <div>
+            <input id="timesOfSwitching" , name="inputTimes">
+            <br>
+            <button id="StartSwitching" , name="btnShine" , onclick="displayTimes">Mode_shine</button>
+        </div>
+        <p id="showTimes">
+        </p>
+    </fieldset>
+</form>
+<pre id="log"></pre>
+>>>>>>> 7de2500 (lab4)
 </body>
 </html>
