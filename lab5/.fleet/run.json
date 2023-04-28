@@ -1,0 +1,9 @@
+{
+    "configurations": [
+        {
+            "type": "python",
+            "name": "average-finder",
+            "arguments": ["main.py", "1", "2", "3"]
+        }
+    ]
+}
