@@ -1,0 +1,75 @@
+html
+    head
+        script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+        script.
+            function switchLEDs () {
+                // alert("fjdkl")
+                const LED1 = $('#LED1CB').is(':checked') ? "ON" : "OFF";
+                const LED2 = $('#LED2CB').is(':checked') ? "ON" : "OFF";
+                const LED3 = $('#LED3CB').is(':checked') ? "ON" : "OFF";
+                const LED4 = $('#LED4CB').is(':checked') ? "ON" : "OFF";
+                $.ajax({
+                    url: 'users/switchLEDs',
+                    type: 'POST',
+                    data: {LED1, LED2, LED3, LED4},
+                    success: (data) => {
+                        $('#LED1').html("LED1:" + LED1);
+                        $('#LED2').html("LED2:" + LED2);
+                        $('#LED3').html("LED3:" + LED3);
+                        $('#LED4').html("LED4:" + LED4);
+                    },
+                    error: (err) => {
+                        alert(err);
+                    }
+                });
+                // uncheck all checkboxes
+                $('#LED1CB').prop('checked', false);
+                $('#LED2CB').prop('checked', false);
+                $('#LED3CB').prop('checked', false);
+                $('#LED4CB').prop('checked', false);
+
+            }
+        script.
+            function shineLEDs () {
+                const times = $('#times').val();
+                $.ajax({
+                    url: 'users/shineLEDs',
+                    type: 'POST',
+                    data: {times},
+                    success: (data) => {
+                        // alert(data);
+                    },
+                    error: (err) => {
+                        alert(err);
+                    }
+                });
+            }
+
+
+
+    body
+        p(id="LED1") LED1:Unknown
+        p(id="LED2") LED2:Unknown
+        p(id="LED3") LED3:Unknown
+        p(id="LED4") LED4:Unknown
+
+        input(type="checkbox", name="LED1", id="LED1CB")
+        label(for="LED1") LED1
+
+        input(type="checkbox", name="LED2", id="LED2CB")
+        label(for="LED2") LED2
+        br
+        input(type="checkbox", name="LED3", id="LED3CB")
+        label(for="LED3") LED3
+
+        input(type="checkbox", name="LED4", id="LED4CB")
+        label(for="LED4") LED4
+
+        br
+        br
+
+        input(type="button", value="submit", onclick="switchLEDs()")
+        br
+        br
+        input(name="times", id="times", value="")
+        input(type="button", value="Mode_Shine", onclick="shineLEDs()")
