@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(action='/users', method='get')
+    input(type="radio", value="YES", name="toDOrNotToD")
+    label(for="option1") TO_DETECT
+    input(type="radio", value="NO", name="toDOrNotToD")
+    label(for="option2") NOT_TO_DETECT
+    br
+    input(type='submit', value='Submit')
