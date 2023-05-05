@@ -8,31 +8,23 @@ router.get('/', async function (req, res, next) {
         "opt": req.query.toDOrNotToD
     }
     if (responce["opt"] === "YES") {
-      const process = exec(`python ./test.py`);
-      process.stdout.on('data', (data) => {
-        console.log(`stdout: ${data}`);
-        res.send(data)
-      });
-      process.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-      });
-      await new Promise(r => setTimeout(r, 500));
-      res.redirect(req.get('referer'));
+        console.log("fjdkl");
     }
-
+    res.render('cool', {title: "jkl"});
 });
 
-
-const getVoltage = async (res) => {
-    const process = exec("python ./test.py");
-    process.stdout.on('data', (data, res) => {
+router.get('/notCool', (req, res) => {
+    const process = exec(`python ./test.py`);
+    process.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
+        res.send(data)
     });
     process.stderr.on('data', (data) => {
         console.error(`stderr: ${data}`);
+        res.send(data)
     });
-    await new Promise(r => setTimeout(r, 500));
-};
+});
+
 
 
 module.exports = router;
